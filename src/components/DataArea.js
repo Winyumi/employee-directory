@@ -37,10 +37,14 @@ export default class DataArea extends Component {
           return 1;
         } else if (b[heading] === undefined) {
           return -1;
-        }
-        // numerically
-        else if (heading === "name") {
+        } else if (heading === "name" ) {
           return a[heading].first.localeCompare(b[heading].first);
+        } else if (heading === "email" ) {
+          return a[heading].localeCompare(b[heading]);
+        } else if (heading === "phone" ) {
+          return a[heading].replace(/\D/g,'') - b[heading].replace(/\D/g,'');
+        } else if (heading === "dob" ) {
+          return new Date(a[heading].date) - new Date(b[heading].date);
         } else {
           return a[heading] - b[heading];
         }
@@ -50,10 +54,14 @@ export default class DataArea extends Component {
           return 1;
         } else if (b[heading] === undefined) {
           return -1;
-        }
-        // numerically
-        else if (heading === "name") {
+        } else if (heading === "name") {
           return b[heading].first.localeCompare(a[heading].first);
+        } else if (heading === "email" ) {
+          return b[heading].localeCompare(a[heading]);
+        } else if (heading === "phone" ) {
+          return b[heading].replace(/\D/g,'') - a[heading].replace(/\D/g,'');
+        } else if (heading === "dob" ) {
+          return new Date(b[heading].date) - new Date(a[heading].date);
         } else {
           return b[heading] - a[heading];
         }
@@ -65,7 +73,7 @@ export default class DataArea extends Component {
   }
 
   handleSearchChange = event => {
-    console.log(event.target.value);
+    //console.log(event.target.value);
     const filter = event.target.value;
     const filteredList = this.state.users.filter(item => {
       // merge data together, then see if user input is anywhere inside

@@ -31,6 +31,8 @@ export default class DataArea extends Component {
     }
 
     const compareFnc = (a, b) => {
+      console.log(a,b);
+      if (heading === "image" ) heading = "name";
       if (this.state.order === "ascend") {
         // account for missing values
         if (a[heading] === undefined) {
